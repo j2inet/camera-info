@@ -40,7 +40,10 @@ void EnableVirtualTerminal()
         return;
     }
 
-    SetConsoleMode(stdoutHandle, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+    if (!SetConsoleMode(stdoutHandle, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING))
+    {
+        std::wcout << kColorError << L"Warning: ANSI color output is unavailable in this console." << kColorReset << L'\n';
+    }
 }
 
 std::wstring GuidToString(REFGUID guid)
@@ -131,7 +134,7 @@ void EnumerateCameras()
         UINT32 cameraNameLength = 0;
         hr = device->GetAllocatedString(MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME, &cameraName, &cameraNameLength);
         std::wstring friendlyName = L"Unknown camera";
-        if (SUCCEEDED(hr) && cameraName != nullptr && cameraNameLength > 0)
+        if (SUCCEEDED(hr) && cameraName != nullptr)
         {
             friendlyName = cameraName;
         }

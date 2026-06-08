@@ -25,6 +25,22 @@ constexpr const wchar_t* kColorHeader = L"\x1b[36m";
 constexpr const wchar_t* kColorCamera = L"\x1b[32m";
 constexpr const wchar_t* kColorFormat = L"\x1b[33m";
 constexpr const wchar_t* kColorError = L"\x1b[31m";
+constexpr const wchar_t* kColorAbout = L"\x1b[34m";
+
+
+void About() 
+{
+    std::wcout << L"CameraInfo - A simple tool to enumerate connected cameras and their supported output formats using Media Foundation.\n"
+               << L"Usage: CameraInfo.exe\n"
+               << L"\n"
+               << L"This tool lists all video capture devices (cameras) detected on the system, along with their friendly names and the video formats they support.\n"
+               << L"\n"
+		       << L"Note: This tool requires Windows 7 or later and may not work properly in older consoles that do not support ANSI escape codes for colored output.\n"
+	           << L"\n"
+		       << L"Source code: https://github.com/j2inet/camera-info\n"
+		       << kColorAbout << L"From J2i.net, LLC 2026\n\n" << kColorReset;
+
+}
 
 void EnableVirtualTerminal()
 {
@@ -172,9 +188,15 @@ void EnumerateCameras()
 }
 } // namespace
 
-int wmain()
+int wmain(int argc, wchar_t* argv[])
 {
     EnableVirtualTerminal();
+
+    if (argc > 1 && (wcscmp(argv[1], L"/?") == 0 || wcscmp(argv[1], L"-?") == 0 || wcscmp(argv[1], L"--help") == 0))
+    {
+        About();
+        return 0;
+    }
 
     HRESULT hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
     if (FAILED(hr))

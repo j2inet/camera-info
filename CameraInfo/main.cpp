@@ -130,8 +130,15 @@ void EnumerateCameras()
         wchar_t* cameraName = nullptr;
         UINT32 cameraNameLength = 0;
         hr = device->GetAllocatedString(MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME, &cameraName, &cameraNameLength);
-        std::wstring friendlyName = SUCCEEDED(hr) && cameraNameLength > 0 ? cameraName : L"Unknown camera";
-        CoTaskMemFree(cameraName);
+        std::wstring friendlyName = L"Unknown camera";
+        if (SUCCEEDED(hr) && cameraName != nullptr && cameraNameLength > 0)
+        {
+            friendlyName = cameraName;
+        }
+        if (cameraName != nullptr)
+        {
+            CoTaskMemFree(cameraName);
+        }
 
         std::wcout << kColorCamera << L"Camera " << (i + 1) << L": " << friendlyName << kColorReset << L'\n';
 

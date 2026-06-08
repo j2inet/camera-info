@@ -1,0 +1,12 @@
+Testing/
+/CameraInfo/x64/Debug
+*.db
+x64/Debug
+x64/Release
+ARM64
+x64
+*.sdf
+/.vs/CameraInfo/v18
+/.vs
+
+*.user

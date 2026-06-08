@@ -21,7 +21,7 @@ meaningful to work from the question of "Under what conditions does the camera a
 resolution." There are other attributes about a camera we might be interest in (like framerate), but
 let's keep this simple. 
 
-![Program Output]((images/outputFormats.png)
+![Program Output](images/outputFormats.png)
 
 
 

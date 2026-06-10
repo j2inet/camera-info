@@ -72,6 +72,18 @@ std::wstring GuidToString(REFGUID guid)
     if (guid == MFVideoFormat_I420) return L"I420";
     if (guid == MFVideoFormat_IYUV) return L"IYUV";
     if (guid == MFVideoFormat_UYVY) return L"UYVY";
+	if (guid == MFVideoFormat_H264) return L"H264";
+	if (guid == MFVideoFormat_HEVC) return L"HEVC";
+	if (guid == MFVideoFormat_VP80) return L"VP8";
+	if (guid == MFVideoFormat_VP90) return L"VP9";
+	if (guid == MFVideoFormat_DV25) return L"DV25";
+	if (guid == MFVideoFormat_DV50) return L"DV50";
+	if (guid == MFVideoFormat_DVSD) return L"DVSD";
+	if (guid == MFVideoFormat_DVHD) return L"DVHD";
+	if (guid == MFVideoFormat_D16) return L"D16";
+	if (guid == MFVideoFormat_DV25) return L"DV25";
+
+
 
     wchar_t buffer[64] = {};
     StringFromGUID2(guid, buffer, static_cast<int>(std::size(buffer)));
